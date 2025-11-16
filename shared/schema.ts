@@ -28,6 +28,7 @@ export const bookings = pgTable("bookings", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: varchar("user_id").notNull(),
   petId: varchar("pet_id").notNull(),
+  petName: varchar("pet_name").notNull(),
   breed: text("breed").notNull(),
   subscriptionType: text("subscription_type").notNull(), // "hourly", "daily", "weekly"
   date: text("date").notNull(),

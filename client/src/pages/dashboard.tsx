@@ -34,12 +34,12 @@ export default function Dashboard() {
       testId: "card-browse-pets"
     },
     {
-      title: "My Bookings",
+      title: "Total Bookings",
       description: "View and manage your bookings",
       action: () => {
         const bookings = storage.getBookings();
         if (bookings.length > 0) {
-          alert(`You have ${bookings.length} booking(s)`);
+          alert(`Total  ${bookings.length} booking(s) Today`);
         } else {
           setLocation("/pets");
         }
@@ -59,29 +59,36 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-
       {/* Hero Section */}
       <div className="relative min-h-[500px] sm:h-[70vh] lg:h-[80vh] flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${dashboardHeroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fff5ec]/60 via-[#f2e7dd]/80 to-[#fff5ec]" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6" data-testid="text-welcome">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
+              style={{ color: "#6d3b1a" }}
+              data-testid="text-welcome">
             Welcome back, {user.username}!
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8">
-            Connecting hearts, through Paws
+          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8"
+             style={{ color: "#63706b" }}>
+            Find trusted companions for your furry friends
           </p>
-          
           {/* Glassmorphic Search Card */}
-          <Card className="backdrop-blur-lg bg-card/70 border-card-border p-8 rounded-3xl shadow-xl">
-            <h3 className="text-2xl font-semibold mb-6">Start Your Search</h3>
-            <Button 
+          <Card className="backdrop-blur-lg bg-[#fff5ec]/80 border-[#bfa385] p-8 rounded-3xl shadow-xl">
+            <h3 className="text-2xl font-semibold mb-6" style={{ color: "#6d3b1a" }}>
+              Start Your Search
+            </h3>
+            <Button
               size="lg"
               className="text-lg px-8 h-14 rounded-xl"
+              style={{
+                background: "#6d3b1a",
+                color: "#fff",
+                border: "none"
+              }}
               onClick={() => setLocation("/pets")}
               data-testid="button-start-search"
             >
@@ -95,32 +102,48 @@ export default function Dashboard() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {stats.map((stat, index) => (
-            <Card 
+            <Card
               key={index}
-              className="backdrop-blur-sm bg-card/90 border-card-border p-8 rounded-3xl text-center hover-elevate transition-transform duration-300"
+              className="backdrop-blur-sm bg-[#fff5ec]/90 border-[#bfa385] p-8 rounded-3xl text-center hover:shadow-lg transition-transform duration-300"
               data-testid={`stat-${stat.label.toLowerCase().replace(' ', '-')}`}
             >
-              <stat.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-4xl font-bold text-foreground mb-2">{stat.value}</h3>
-              <p className="text-muted-foreground">{stat.label}</p>
+              <stat.icon className="w-12 h-12 mx-auto mb-4" style={{ color: "#6d3b1a" }}/>
+              <h3 className="text-4xl font-bold mb-2" style={{ color: "#6d3b1a" }}>
+                {stat.value}
+              </h3>
+              <p className="text-base" style={{ color: "#63706b" }}>
+                {stat.label}
+              </p>
             </Card>
           ))}
         </div>
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-3xl font-bold text-center mb-8">Quick Actions</h2>
+          <h2 className="text-3xl font-bold text-center mb-8" style={{ color: "#6d3b1a" }}>
+            Quick Actions
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {quickActions.map((action, index) => (
-              <Card 
+              <Card
                 key={index}
-                className="backdrop-blur-sm bg-card/90 border-card-border p-8 rounded-3xl hover-elevate active-elevate-2 cursor-pointer transition-all duration-300"
+                className="backdrop-blur-sm bg-[#fff5ec]/90 border-[#bfa385] p-8 rounded-3xl hover:shadow-lg active:shadow transition-all duration-300 cursor-pointer"
                 onClick={action.action}
                 data-testid={action.testId}
               >
-                <h3 className="text-xl font-semibold mb-2">{action.title}</h3>
-                <p className="text-muted-foreground mb-4">{action.description}</p>
-                <Button variant="secondary" className="w-full rounded-xl" data-testid={`button-${action.testId}`}>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: "#6d3b1a" }}>
+                  {action.title}
+                </h3>
+                <p className="mb-4" style={{ color: "#63706b" }}>{action.description}</p>
+                <Button
+                  variant="secondary"
+                  className="w-full rounded-xl"
+                  style={{
+                    background: "#63706b",
+                    color: "#fff"
+                  }}
+                  data-testid={`button-${action.testId}`}
+                >
                   Get Started
                 </Button>
               </Card>

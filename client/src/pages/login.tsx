@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { storage } from "@/lib/storage";
 import loginHeroImage from "@assets/generated_images/Login_hero_pet_owner_60d14351.png";
+import pawLogo from "@assets/generated_images/paw.png"; // use your jpg/png as appropriate
 
 export default function Login() {
   const [, setLocation] = useLocation();
@@ -14,18 +15,18 @@ export default function Login() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!username.trim() || !password.trim()) {
       return;
     }
-    
+
     const user = {
       id: Math.random().toString(36).substr(2, 9),
       username: username.trim(),
       password,
       role,
     };
-    
+
     storage.setUser(user);
     setLocation("/dashboard");
   };
@@ -34,39 +35,74 @@ export default function Login() {
     <div className="min-h-screen flex">
       {/* Left side - Hero Image */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${loginHeroImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#6d3b1a]/20 to-transparent" />
         <div className="relative z-10 flex items-end p-12">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Welcome to PawConnect</h1>
-            <p className="text-lg text-white/90">Connecting hearts, through Paws</p>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Welcome to PawConnect
+            </h1>
+            <p className="text-lg text-white/90">
+              Find trusted companions for your furry friends
+            </p>
           </div>
         </div>
       </div>
 
       {/* Right side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 bg-background">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-1 sm:p-1 bg-background">
         <div className="w-full max-w-md">
-          {/* Logo */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary" data-testid="text-app-title">PawConnect</h2>
-            <p className="text-sm sm:text-base text-muted-foreground mt-2">Connect with pet care you can trust</p>
+          {/* Logo & Heading */}
+          <div className="flex flex-col items-center mb-3">
+            <div className="flex items-center justify-center">
+              <img
+                src={pawLogo}
+                alt="Paw Logo"
+                className="w-16 h-16"
+                // style={{ filter: "drop-shadow(0 1px 4px #bfa385)" }} // gentle brown shadow
+              />
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+                style={{
+                  color: "#6d3b1a",
+                  letterSpacing: "0.02em"
+                }}
+                data-testid="text-app-title"
+              >
+                Paw
+                <span style={{ color: "#63706b" }}>Connect</span>
+              </h2>
+            </div>
+            <p className="text-sm sm:text-base font-medium mt-1" style={{ color: "#63706b" }}>
+              Connecting hearts, through Paws
+            </p>
           </div>
 
           {/* Role Toggle */}
-          <div className="flex gap-2 mb-8 p-1 bg-muted rounded-2xl">
+          <div className="flex gap-2 mb-8 p-1" style={{ background: "#f2e7dd" , borderRadius:"1.5rem" }}>
             <button
               type="button"
               onClick={() => setRole("owner")}
               data-testid="button-role-owner"
               className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all duration-200 ${
                 role === "owner"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover-elevate"
+                  ? "shadow-sm"
+                  : ""
               }`}
+              style={
+                role === "owner"
+                  ? {
+                      background: "#6d3b1a",
+                      color: "#fff"
+                    }
+                  : {
+                      color: "#6d3b1a",
+                      background: "transparent"
+                    }
+              }
             >
               Pet Owner
             </button>
@@ -76,18 +112,37 @@ export default function Login() {
               data-testid="button-role-companion"
               className={`flex-1 py-3 px-4 rounded-xl font-semibold transition-all duration-200 ${
                 role === "companion"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "text-muted-foreground hover-elevate"
+                  ? "shadow-sm"
+                  : ""
               }`}
+              style={
+                role === "companion"
+                  ? {
+                      background: "#63706b",
+                      color: "#fff"
+                    }
+                  : {
+                      color: "#63706b",
+                      background: "transparent"
+                    }
+              }
             >
               Pet Companion
             </button>
           </div>
 
           {/* Login Form - Glassmorphic Card */}
-          <form onSubmit={handleLogin} className="space-y-6 backdrop-blur-sm bg-card/50 p-6 sm:p-8 rounded-3xl border border-card-border shadow-lg">
+          <form
+            onSubmit={handleLogin}
+            className="space-y-6 backdrop-blur-sm bg-card/50 p-6 sm:p-8 rounded-3xl border border-card-border shadow-lg"
+          >
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label
+                htmlFor="username"
+                style={{ color: "#6d3b1a", fontWeight: 600 }}
+              >
+                Username
+              </Label>
               <Input
                 id="username"
                 type="text"
@@ -97,11 +152,17 @@ export default function Login() {
                 required
                 data-testid="input-username"
                 className="h-12 rounded-xl"
+                style={{ borderColor: "#bfa385" }}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label
+                htmlFor="password"
+                style={{ color: "#63706b", fontWeight: 600 }}
+              >
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
@@ -111,12 +172,18 @@ export default function Login() {
                 required
                 data-testid="input-password"
                 className="h-12 rounded-xl"
+                style={{ borderColor: "#bfa385" }}
               />
             </div>
 
             <Button
               type="submit"
               className="w-full h-12 text-base font-semibold rounded-xl"
+              style={{
+                background: "#6d3b1a",
+                color: "#fff",
+                border: "none"
+              }}
               data-testid="button-login"
             >
               Sign In as {role === "owner" ? "Pet Owner" : "Pet Companion"}
