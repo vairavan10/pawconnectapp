@@ -122,13 +122,6 @@ export default function Login() {
               Sign In as {role === "owner" ? "Pet Owner" : "Pet Companion"}
             </Button>
           </form>
-
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            New to PawConnect?{" "}
-            <button className="text-primary font-semibold hover:underline">
-              Create an account
-            </button>
-          </p>
         </div>
       </div>
     </div>
