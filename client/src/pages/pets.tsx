@@ -12,6 +12,16 @@ import huskyImage from "@assets/generated_images/Husky_dog_profile_d73db247.png"
 import tabbyCatImage from "@assets/generated_images/Tabby_cat_profile_6de5f72d.png";
 import britishShorthairImage from "@assets/generated_images/British_shorthair_cat_b83c77d9.png";
 import labradorImage from "@assets/generated_images/Labrador_retriever_profile_28e4b324.png";
+import blackLabradorImage from "@assets/generated_images/balcky.jpeg";
+import germanShepherdImage from "@assets/generated_images/german.jpeg";
+import pugImage from "@assets/generated_images/pug.jpg";
+import shihTzuImage from "@assets/generated_images/sitzu.jpg";
+import pixieBobImage from "@assets/generated_images/pixi.jpg";
+import silverShadedImage from "@assets/generated_images/silver.jpg";
+import persianCatImage from "@assets/generated_images/Gemini_Generated_Image_g1imd5g1imd5g1im.png";
+import raga from "@assets/generated_images/raga.jpg";
+
+
 
 const MOCK_PETS = [
   {
@@ -74,6 +84,87 @@ const MOCK_PETS = [
     imageUrl: labradorImage,
     description: "Charlie is a friendly chocolate lab who loves meeting new people and other dogs. Great family companion!"
   },
+  {
+    id: "7",
+    name: "Coco",
+    breed: "Pug",
+    age: 3,
+    behavior: "Charming, Mischievous",
+    available: true,
+    imageUrl: pugImage, // import or require the image
+    description: "Coco is a small but charismatic pug who loves attention and cuddles. Perfect apartment buddy!",
+  },
+  {
+    id: "8",
+    name: "Rocky",
+    breed: "German Shepherd",
+    age: 5,
+    behavior: "Loyal, Protective",
+    available: true,
+    imageUrl: germanShepherdImage, // import or require the image
+    description: "Rocky is a disciplined German Shepherd, ideal for families seeking a watchful, loyal companion.",
+  },
+  {
+    id: "9",
+    name: "Lily",
+    breed: "Persian Cat",
+    age: 2,
+    behavior: "Graceful, Quiet",
+    available: true,
+    imageUrl: persianCatImage, // import or require the image
+    description: "Lily is an elegant Persian cat who prefers a calm, quiet environment and gentle petting.",
+  },
+  {
+    id: "10",
+    name: "Shadow",
+    breed: "Black Labrador",
+    age: 4,
+    behavior: "Friendly, Obedient",
+    available: true,
+    imageUrl: blackLabradorImage, // import or require the image
+    description: "Shadow is a cheerful black lab who gets along well with everyone. Currently booked!",
+  },
+  {
+  id: "11",
+  name: "Tzuzy",
+  breed: "Shih Tzu",
+  age: 4,
+  behavior: "Loyal, Playful",
+  available: true,
+  imageUrl: shihTzuImage, // Add and import this image
+  description: "Tzuzy is a charming Shih Tzu who loves being pampered and is great with families.",
+},
+{
+  id: "12",
+  name: "Silver",
+  breed: "Silver Shaded Cat",
+  age: 2,
+  behavior: "Calm, Independent",
+  available: true,
+  imageUrl: silverShadedImage, // Add and import this image
+  description: "Silver is a graceful, calm cat with a beautiful silver shaded coat and a gentle demeanor.",
+},
+{
+  id: "13",
+  name: "Pixie",
+  breed: "Pixie Bob Cat",
+  age: 3,
+  behavior: "Curious, Friendly",
+  available: true,
+  imageUrl: pixieBobImage, // Add and import this image
+  description: "Pixie is a unique Pixie Bob cat with tufted ears and a playful, curious personality.",
+},
+{
+  id: "14",
+  name: "Ragav",
+  breed: "Raga muffin Cat",
+  age: 3,
+  behavior: "Curious, Friendly",
+  available: true,
+  imageUrl: raga, // Add and import this image
+  description: "Ragav is a unique Raga muffin cat with tufted ears and a playful, curious personality.",
+},
+
 ];
 
 export default function Pets() {
@@ -117,7 +208,7 @@ export default function Pets() {
                 <div className="absolute top-4 right-4">
                   <Badge 
                     variant={pet.available ? "default" : "secondary"}
-                    className="backdrop-blur-lg bg-background/80 px-3 py-1 rounded-full"
+                    className="backdrop-blur-lg bg-background/20 px-3 py-1 rounded-full"
                     data-testid={`badge-availability-${pet.id}`}
                   >
                     {pet.available ? "Available" : "Booked"}

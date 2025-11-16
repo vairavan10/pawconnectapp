@@ -42,7 +42,7 @@ export default function Login() {
         <div className="relative z-10 flex items-end p-12">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Welcome to PawConnect</h1>
-            <p className="text-lg text-white/90">Find trusted companions for your furry friends</p>
+            <p className="text-lg text-white/90">Connecting hearts, through Paws</p>
           </div>
         </div>
       </div>

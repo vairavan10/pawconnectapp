@@ -73,7 +73,7 @@ export default function Dashboard() {
             Welcome back, {user.username}!
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8">
-            Find trusted companions for your furry friends
+            Connecting hearts, through Paws
           </p>
           
           {/* Glassmorphic Search Card */}
