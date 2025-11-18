@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { storage } from "@/lib/storage";
 import loginHeroImage from "@assets/generated_images/Login_hero_pet_owner_60d14351.png";
-import pawLogo from "@assets/generated_images/paw.png"; // use your jpg/png as appropriate
+import pawLogo from "@assets/generated_images/paw1.png"; // use your jpg/png as appropriate
 
 export default function Login() {
   const [, setLocation] = useLocation();

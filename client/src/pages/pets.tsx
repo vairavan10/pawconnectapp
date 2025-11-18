@@ -85,13 +85,13 @@ const MOCK_PETS = [
   },
   {
     id: "7",
-    name: "Coco",
+    name: "Joy",
     breed: "Pug",
     age: 3,
     behavior: "Charming, Mischievous",
     available: true,
     imageUrl: pugImage,
-    description: "Coco is a small but charismatic pug who loves attention and cuddles. Perfect apartment buddy!",
+    description: "Joy is a small but charismatic pug who loves attention and cuddles. Perfect apartment buddy!",
   },
   {
     id: "8",

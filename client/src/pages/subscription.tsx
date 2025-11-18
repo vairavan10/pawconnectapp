@@ -10,39 +10,39 @@ const SUBSCRIPTION_PLANS = [
   {
     type: "hourly" as const,
     title: "Hourly",
-    price: "₹15",
+    price: "₹199",
     duration: "per hour",
     features: [
       "Perfect for quick visits",
       "Flexible scheduling",
       "1-hour minimum",
-      "Same-day booking available"
-    ]
+      "Same-day booking available",
+    ],
   },
   {
     type: "daily" as const,
     title: "Daily",
-    price: "₹75",
+    price: "₹299",
     duration: "per day",
     features: [
       "Full day care (8 hours)",
       "Multiple play sessions",
       "Photo updates",
-      "Feeding & medications"
+      "Feeding & medications",
     ],
-    popular: true
   },
   {
-    type: "weekly" as const,
-    title: "Weekly",
-    price: "₹450",
-    duration: "per week",
+    type: "monthly" as const,
+    title: "Premium Monthly",
+    price: "₹499",
+    duration: "per month",
+    popular: true,
     features: [
-      "Best value for long trips",
-      "7 days of care",
+      "Unlimited care for 30 days",
       "Daily updates & photos",
-      "Priority booking"
-    ]
+      "Priority customer support",
+      "Exclusive premium benefits",
+    ],
   },
 ];
 
@@ -69,7 +69,7 @@ export default function Subscription() {
 
     const updatedBooking = {
       ...bookingData,
-      subscriptionType: selectedPlan
+      subscriptionType: selectedPlan,
     };
     storage.setCurrentBooking(updatedBooking);
     setLocation("/booking");
@@ -81,8 +81,7 @@ export default function Subscription() {
     <div
       className="min-h-screen bg-background"
       style={{
-        background:
-          "linear-gradient(135deg, #fff9f4 60%, #fdf6ed 100%)",
+        background: "linear-gradient(135deg, #fff9f4 60%, #fdf6ed 100%)",
         fontFamily:
           "'Inter', 'Quicksand', 'Poppins', 'Segoe UI', 'Arial', sans-serif",
       }}
@@ -94,7 +93,8 @@ export default function Subscription() {
         <div className="flex items-center justify-center gap-4 mb-12">
           {[1, 2, 3].map((step, idx) => {
             const labels = ["Select Pet", "Choose Plan", "Schedule"];
-            const isActive = step <= 2; // steps 1 and 2 active for example
+            const isActive = step <= 2;
+
             return (
               <div key={step} className="flex items-center gap-2">
                 <div
@@ -125,6 +125,7 @@ export default function Subscription() {
           })}
         </div>
 
+        {/* Title */}
         <div className="text-center mb-8 sm:mb-12">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
@@ -138,6 +139,7 @@ export default function Subscription() {
           >
             Choose Your Plan
           </h1>
+
           <p
             className="text-base sm:text-lg md:text-xl text-muted-foreground px-4"
             style={{ color: "#63706b", fontFamily: "'Inter', sans-serif" }}
@@ -147,14 +149,17 @@ export default function Subscription() {
           </p>
         </div>
 
+        {/* Plans */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {SUBSCRIPTION_PLANS.map((plan) => (
             <Card
               key={plan.type}
               className={`relative rounded-3xl p-8 cursor-pointer transition-all duration-300 ${
                 selectedPlan === plan.type
-                  ? "ring-2 ring-[#6d3b1a] shadow-lg"
-                  : "hover:shadow"
+                  ? "ring-2 ring-[#6d3b1a] shadow-xl"
+                  : plan.popular
+                    ? "shadow-[0_0_20px_rgba(255,215,0,0.25)]"
+                    : "hover:shadow"
               }`}
               onClick={() => handleSelectPlan(plan.type)}
               data-testid={`card-plan-${plan.type}`}
@@ -162,8 +167,8 @@ export default function Subscription() {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="bg-[#6d3b1a] text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Most Popular
+                  <span className="bg-[#6d3b1a] text-white px-4 py-1 rounded-full text-sm font-medium shadow-md">
+                    Premium Plan
                   </span>
                 </div>
               )}
@@ -183,7 +188,9 @@ export default function Subscription() {
                   >
                     {plan.price}
                   </span>
-                  <span className="text-muted-foreground">/{plan.duration.split(" ")[1]}</span>
+                  <span className="text-muted-foreground">
+                    /{plan.duration.split(" ")[1]}
+                  </span>
                 </div>
               </div>
 
@@ -202,9 +209,11 @@ export default function Subscription() {
                 data-testid={`button-select-${plan.type}`}
                 onClick={() => handleSelectPlan(plan.type)}
                 style={{
-                  borderColor: selectedPlan === plan.type ? "#6d3b1a" : "#bfa385",
+                  borderColor:
+                    selectedPlan === plan.type ? "#6d3b1a" : "#bfa385",
                   color: selectedPlan === plan.type ? "#fff" : "#6d3b1a",
-                  backgroundColor: selectedPlan === plan.type ? "#6d3b1a" : "transparent",
+                  backgroundColor:
+                    selectedPlan === plan.type ? "#6d3b1a" : "transparent",
                 }}
               >
                 {selectedPlan === plan.type ? "Selected" : "Select Plan"}
@@ -213,6 +222,7 @@ export default function Subscription() {
           ))}
         </div>
 
+        {/* Continue Button */}
         <div className="flex justify-center">
           <Button
             size="lg"
